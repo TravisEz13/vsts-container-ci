@@ -1,0 +1,15 @@
+resources:
+  containers:
+  - container: wsc
+    image: microsoft/windowsservercore
+    options: --cpu-count 4
+
+queue:
+  matrix:
+    wsc:
+      containerResource: wsc
+  container: $[ variables['containerResource'] ]
+
+steps:
+  - powershell: |
+      dir env:
